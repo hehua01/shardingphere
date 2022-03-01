@@ -1,0 +1,47 @@
+server: # 端口号
+  port: 8888
+
+spring:
+  main:
+    allow-bean-definition-overriding: true # 允许重名的bean可以被覆盖
+
+  shardingsphere:
+    dataSource:
+      names: master-0, master-0-slave-0
+      master-0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3307/database0?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+        username: root
+        password: 123456
+        #最大连接数
+        maxPoolSize: 20
+      master-0-slave-0: # 配置从库
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3308/database0?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+        username: root
+        password: 123456
+        maxPoolSize: 20
+
+    props:
+      sql:
+        show: true # 开启SQL显示，默认值: false，注意：仅配置读写分离时不会打印日志！！！
+    sharding:
+      master-slave-rules:
+        ds_0:
+          master-data-source-name: master-0
+          slave-data-source-names: master-0-slave-0
+          load-balance-algorithm-type: round_robin #主从规则轮询
+      tables:
+        course:
+          actual-data-nodes: ds_0.course_$->{1..2}
+          key-generator:
+            column: cid
+            type: SNOWFLAKE
+          table-strategy:
+            inline:
+              sharding-column: cid
+              algorithm-expression: course_$->{cid % 2 + 1}
+  jpa:
+    generate-ddl: true
