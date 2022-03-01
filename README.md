@@ -1,4 +1,5 @@
-#<center>shardingsphere<center>
+# <center>shardingsphere<center>
+  
 `read-write`: 实现读写分离
 
 `splitData`: 实现分库分表
