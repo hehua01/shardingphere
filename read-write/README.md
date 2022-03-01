@@ -1,10 +1,10 @@
-# <center> shardingphere 读写分离配置 <center
+# <center> shardingsphere 读写分离配置 <center
 ## 环境
 1. springboot
-2. shardingphere
+2. shardingsphere
 3. mysql
 4. spring data jpa
-> 使用shardingphere之前需要先配置好mysql主从关系：[mysql主从环境搭建](https://note.youdao.com/s/DnvoXWZK)
+> 使用shardingsphere之前需要先配置好mysql主从关系：[mysql主从环境搭建](https://note.youdao.com/s/DnvoXWZK)
 
 ## pom文件
 ```xml
