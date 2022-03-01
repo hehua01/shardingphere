@@ -382,6 +382,7 @@ spring:
 ### 测试
 #### 添加
 > POST http://localhost:8888/add?name=hehua&userId=7
+> 
 userId 为奇数，应该到ds_1
 
 结果：
@@ -404,9 +405,13 @@ mysql> select * from course_2;
 > GET http://localhost:8888/courses
 
 结果：
+
 `2022-03-01 17:47:13.338  INFO 64043 --- [nio-8888-exec-3] ShardingSphere-SQL                       : Actual SQL: master-0-slave-0 ::: select course0_.cid as cid1_0_, course0_.cname as cname2_0_, course0_.status as status3_0_, course0_.user_id as user_id4_0_ from course_1 course0_
+
 2022-03-01 17:47:13.338  INFO 64043 --- [nio-8888-exec-3] ShardingSphere-SQL                       : Actual SQL: master-0-slave-0 ::: select course0_.cid as cid1_0_, course0_.cname as cname2_0_, course0_.status as status3_0_, course0_.user_id as user_id4_0_ from course_2 course0_
+
 2022-03-01 17:47:13.338  INFO 64043 --- [nio-8888-exec-3] ShardingSphere-SQL                       : Actual SQL: master-1-slave-0 ::: select course0_.cid as cid1_0_, course0_.cname as cname2_0_, course0_.status as status3_0_, course0_.user_id as user_id4_0_ from course_1 course0_
+
 2022-03-01 17:47:13.338  INFO 64043 --- [nio-8888-exec-3] ShardingSphere-SQL                       : Actual SQL: master-1-slave-0 ::: select course0_.cid as cid1_0_, course0_.cname as cname2_0_, course0_.status as status3_0_, course0_.user_id as user_id4_0_ from course_2 course0_`
 
 可以看到，都去了从库查询

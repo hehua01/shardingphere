@@ -194,12 +194,14 @@ public class UserController {
 ### 增加user
 > POST http://localhost:8888/add?name=hehua03&city=beijing
 > 输出：
+> 
 > `2022-03-01 11:35:55.910  INFO 48926 --- [nio-8888-exec-1] ShardingSphere-SQL                       : Actual SQL: master-0 ::: insert into user  (city, name) VALUES (?, ?) ::: [beijing, hehua03]`
 
 可以看到写入数据实在master库
 ### 获取userList
 > GET http://localhost:8888/users
 > 输出：
+> 
 > `2022-03-01 11:37:26.999  INFO 48926 --- [nio-8888-exec-3] ShardingSphere-SQL                       : Actual SQL: master-0-slave-0 ::: select user0_.id as id1_0_, user0_.city as city2_0_, user0_.name as name3_0_ from user user0_`
 
 结果：
