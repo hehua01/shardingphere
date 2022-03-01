@@ -1,4 +1,4 @@
-# <center> shardingsphere 读写分离配置 <center
+# <center> shardingsphere 读写分离配置 <center>
 ## 环境
 1. springboot
 2. shardingsphere
